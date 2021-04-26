@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
@@ -10,10 +10,6 @@ import * as actions from "../../store/actions/index";
 import axios from "../../axios-orders";
 
 class BurgerBuilder extends Component {
-  // constructor(props) {
-  //     super(props);
-  //     this.state = {...}
-  // }
   state = {
     purchasing: false,
   };
@@ -67,7 +63,7 @@ class BurgerBuilder extends Component {
 
     if (this.props.ings) {
       burger = (
-        <Aux>
+        <Fragment>
           <Burger ingredients={this.props.ings} />
           <BuildControls
             ingredientAdded={this.props.onIngredientAdded}
@@ -78,7 +74,7 @@ class BurgerBuilder extends Component {
             isAuth={this.props.isAuthenticated}
             price={this.props.price}
           />
-        </Aux>
+        </Fragment>
       );
       orderSummary = (
         <OrderSummary
@@ -91,7 +87,7 @@ class BurgerBuilder extends Component {
     }
     // {salad: true, meat: false, ...}
     return (
-      <Aux>
+      <Fragment>
         <Modal
           show={this.state.purchasing}
           modalClosed={this.purchaseCancelHandler}
@@ -99,7 +95,7 @@ class BurgerBuilder extends Component {
           {orderSummary}
         </Modal>
         {burger}
-      </Aux>
+      </Fragment>
     );
   }
 }
