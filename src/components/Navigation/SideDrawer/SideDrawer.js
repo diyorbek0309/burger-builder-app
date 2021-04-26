@@ -1,10 +1,8 @@
-import React from "react";
-
+import React, { Fragment } from "react";
 import Logo from "../../Logo/Logo";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import classes from "./SideDrawer.css";
 import Backdrop from "../../UI/Backdrop/Backdrop";
-import Aux from "../../../hoc/Auxilliary/Auxillary";
 
 const sideDrawer = (props) => {
   let attachedClasses = [classes.SideDrawer, classes.Close];
@@ -12,17 +10,17 @@ const sideDrawer = (props) => {
     attachedClasses = [classes.SideDrawer, classes.Open];
   }
   return (
-    <Aux>
+    <Fragment>
       <Backdrop show={props.open} clicked={props.closed} />
-      <div className={attachedClasses.join(" ")}>
+      <div className={attachedClasses.join(" ")} onClick={props.closed}>
         <div className={classes.Logo}>
           <Logo />
         </div>
         <nav>
-          <NavigationItems />
+          <NavigationItems isAuthenticated={props.isAuth} />
         </nav>
       </div>
-    </Aux>
+    </Fragment>
   );
 };
 

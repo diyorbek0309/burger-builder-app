@@ -1,14 +1,7 @@
-import React, { Component } from "react";
-
-import Aux from "../../../hoc/Auxilliary/Auxillary";
+import React, { Component, Fragment } from "react";
 import Button from "../../UI/Button/Button";
 
 class OrderSummary extends Component {
-  // This could be a functional component, doesn't have to be a class
-  componentWillUpdate() {
-    console.log("[OrderSummary] WillUpdate");
-  }
-
   render() {
     const ingredientSummary = Object.keys(this.props.ingredients).map(
       (igKey) => {
@@ -22,7 +15,7 @@ class OrderSummary extends Component {
     );
 
     return (
-      <Aux>
+      <Fragment>
         <h3>Your Order</h3>
         <p>A delicious burger with the following ingredients:</p>
         <ul>{ingredientSummary}</ul>
@@ -31,12 +24,12 @@ class OrderSummary extends Component {
         </p>
         <p>Continue to Checkout?</p>
         <Button btnType="Danger" clicked={this.props.purchaseCancelled}>
-          CANCEL
+          Cancel
         </Button>
         <Button btnType="Success" clicked={this.props.purchaseContinued}>
-          CONTINUE
+          Continue
         </Button>
-      </Aux>
+      </Fragment>
     );
   }
 }
