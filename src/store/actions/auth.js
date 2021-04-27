@@ -1,16 +1,22 @@
 import axios from "axios";
 
-import * as actionTypes from "./actionTypes";
+import {
+  AUTH_START,
+  AUTH_FAIL,
+  AUTH_LOGOUT,
+  AUTH_SUCCESS,
+  SET_AUTH_REDIRECT_PATH,
+} from "../actions/actionTypes";
 
 export const authStart = () => {
   return {
-    type: actionTypes.AUTH_START,
+    type: AUTH_START,
   };
 };
 
 export const authSuccess = (token, userId) => {
   return {
-    type: actionTypes.AUTH_SUCCESS,
+    type: AUTH_SUCCESS,
     idToken: token,
     userId: userId,
   };
@@ -18,7 +24,7 @@ export const authSuccess = (token, userId) => {
 
 export const authFail = (error) => {
   return {
-    type: actionTypes.AUTH_FAIL,
+    type: AUTH_FAIL,
     error: error,
   };
 };
@@ -28,7 +34,7 @@ export const logout = () => {
   localStorage.removeItem("expirationDate");
   localStorage.removeItem("userId");
   return {
-    type: actionTypes.AUTH_LOGOUT,
+    type: AUTH_LOGOUT,
   };
 };
 
@@ -74,7 +80,7 @@ export const auth = (email, password, isSignup) => {
 
 export const setAuthRedirectPath = (path) => {
   return {
-    type: actionTypes.SET_AUTH_REDIRECT_PATH,
+    type: SET_AUTH_REDIRECT_PATH,
     path: path,
   };
 };
